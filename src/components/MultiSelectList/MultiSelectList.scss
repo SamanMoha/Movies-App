@@ -1,0 +1,35 @@
+
+.multiselect-filter {
+  width: 200px;
+  margin-left: 10px;
+  box-shadow: 2px 3px 5px 0px darkslategrey;
+  p {
+    height: 23px;
+    margin: 0;
+    color: black;
+    background-color: darkcyan;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style-type: none;
+    background-color: darkcyan;
+    color: black;
+    border-radius: 0 0 5px 5px;
+    padding: 0;
+    margin-top: 1px;
+    li {
+      text-align: left;
+      cursor: pointer;
+      input {
+        margin: 10px 8px;
+        cursor: pointer;
+      }
+
+      &:hover {
+        background-color:cadetblue;
+      }
+    }
+  }
+}
