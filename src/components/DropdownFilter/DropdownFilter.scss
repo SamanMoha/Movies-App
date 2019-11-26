@@ -1,12 +1,7 @@
 .select-filter {
   height: 24px;
-  font-size: calc(10px + 2vmin);
+  font-size: 15px;
   background-color: darkcyan;
   border-color: darkcyan;
   box-shadow: 2px 3px 5px 0px darkslategrey;
-
-  &:focus {
-    //border-color: white !important;
-    outline-color: darkslategrey;
-  }
 }

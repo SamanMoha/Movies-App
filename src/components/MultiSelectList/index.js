@@ -1,5 +1,4 @@
 import React from "react";
-import API from "../../utils/API";
 import './MultiSelectList.scss';
 
 class MultiSelectList extends React.Component {
@@ -7,9 +6,31 @@ class MultiSelectList extends React.Component {
     super(props)
     this.state = {
       selectedItems : [],
-      showList: false
+      showList: false,
+      data: this.props.data
     }
+
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    //this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+   setWrapperRef(node) {
+     this.wrapperRef = node;
+   }
+
+   handleClickOutside = (event) => {
+     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+       this.setState({showList: false})
+     }
+   }
 
   onChangeSelection = (e) => {
     console.log("click ", e.target)
@@ -38,17 +59,14 @@ class MultiSelectList extends React.Component {
 
   render() {
     //console.log("selected ", this.state.selectedItems)
-    let data = [
-      {id: 0, name: 'mimi'},
-      {id: 1, name: 'toti'}
-    ]
+
     return (
       <>
-        <div className="multiselect-filter">
+        <div className="multiselect-filter" ref={this.setWrapperRef}>
           <p onClick={this.onClickDropDon}>Filtrer par acteur(s)</p>
           {this.state.showList &&
             <ul>
-              {data.map(item =>
+              {this.state.data.map(item =>
                   <li key={item.id} id={item.id} onClick={this.onClickListItem}>
                     <input type="checkbox" id={item.id} name={item.name} checked={this.state.selectedItems.includes(item.id)} onChange={this.onChangeSelection}/>
                     <label htmlFor="scales">{item.name}</label>

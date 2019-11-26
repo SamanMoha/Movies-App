@@ -1,5 +1,4 @@
 import React from "react";
-import API from "../../utils/API";
 import './DropdownFilter.scss';
 
 class DropdownFilter extends React.Component {
@@ -18,7 +17,7 @@ class DropdownFilter extends React.Component {
     return (
       <>
         <select name="rateFilter" id="rate-select" className="select-filter">
-          <option value=""> -- Please choose an option -- </option>
+          <option value=""> -- Filtrer par note -- </option>
           {data.map(item =>
               <option key={item.id} value={item.id}>{item.name}</option>
           )}
