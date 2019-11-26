@@ -11,7 +11,6 @@ class MultiSelectList extends React.Component {
     }
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
-    //this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   componentDidMount() {

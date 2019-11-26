@@ -11,13 +11,12 @@ class DropdownFilter extends React.Component {
 
   render() {
     let data = [
-      {id: 0, name: '&sort_by=vote_average.asc'},
-      {id: 1, name: '&sort_by=vote_average.desc'}
+      {id: 0, val: '&sort_by=vote_average.asc', name: 'Filtrer par note croissant'},
+      {id: 1, val: '&sort_by=vote_average.desc', name: 'Filtrer par note décroissant'}
     ]
     return (
       <>
         <select name="rateFilter" id="rate-select" className="select-filter">
-          <option value=""> -- Filtrer par note -- </option>
           {data.map(item =>
               <option key={item.id} value={item.id}>{item.name}</option>
           )}

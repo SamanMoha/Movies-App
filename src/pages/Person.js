@@ -75,9 +75,11 @@ handleSearchChange = (e) => {
       {this.state.isLoaded ?
         <>
         <div className='filter-container'>
-          <DropdownFilter/>
-          <MultiSelectList data={this.state.personData}/>
-          <input type="text" name="searchBar" placeholder='Rechercher...' value="" onChange={this.handleSearchChange}/>
+          <div className='filters'>
+            <DropdownFilter/>
+            <MultiSelectList data={this.state.personData}/>
+          </div>
+          <input className='searchBar' type="text" name="searchBar" placeholder='Rechercher...' value="" onChange={this.handleSearchChange}/>
         </div>
         <div className='cards-container'>
         {this.state.personData.map(item =>

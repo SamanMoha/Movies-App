@@ -1,6 +1,14 @@
 .filter-container {
   display: flex;
   justify-content: space-between;
+  .filters {
+    display: flex;
+  }
+  .searchBar {
+    height: 24px;
+    width: 200px;
+    padding-left: 10px;
+  }
 }
 .cards-container {
   margin-top: 25px;

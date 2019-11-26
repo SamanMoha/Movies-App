@@ -1,5 +1,6 @@
 
 .multiselect-filter {
+  height: 24px;
   width: 200px;
   margin-left: 10px;
   box-shadow: 2px 3px 5px 0px darkslategrey;
@@ -10,7 +11,7 @@
     margin: 0;
     color: black;
     background-color: darkcyan;
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px;
     cursor: pointer;
   }
 
