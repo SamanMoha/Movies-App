@@ -2,9 +2,6 @@ import React from "react";
 import './Tag.scss';
 
 class Tag extends React.Component {
-  constructor(props){
-    super(props)
-  }
 
   render() {
     return (

@@ -2,9 +2,6 @@ import React from "react";
 import './DropdownFilter.scss';
 
 class DropdownFilter extends React.Component {
-  constructor(props){
-    super(props)
-  }
 
   render() {
     let data = [

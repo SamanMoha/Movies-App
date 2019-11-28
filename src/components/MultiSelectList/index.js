@@ -39,7 +39,10 @@ class MultiSelectList extends React.Component {
     return (
       <>
         <div className="multiselect-filter" ref={this.setWrapperRef}>
-          <p onClick={this.onClickDropDon}>Filtrer par acteur(s) <img src={myArrow} className='arrow-down'/> </p>
+          <p onClick={this.onClickDropDon}>
+            Filtrer par acteur(s)
+            <img src={myArrow} className='arrow-down' alt="down"/> 
+          </p>
           {this.state.showList &&
             <ul>
               {this.state.data.map(item =>
