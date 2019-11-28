@@ -3,12 +3,19 @@
   justify-content: space-between;
   .filters {
     display: flex;
+    flex-grow: 1;
+    .multiselect-filter {
+      margin-right: 10px;
+    }
   }
   .searchBar {
     height: 24px;
     width: 200px;
     padding-left: 10px;
   }
+}
+.tag-container {
+  display: flex;
 }
 .cards-container {
   margin-top: 25px;

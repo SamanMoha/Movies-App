@@ -4,9 +4,6 @@ import './DropdownFilter.scss';
 class DropdownFilter extends React.Component {
   constructor(props){
     super(props)
-    this.state = {
-      selectedItem : null
-    }
   }
 
   render() {
@@ -16,9 +13,9 @@ class DropdownFilter extends React.Component {
     ]
     return (
       <>
-        <select name="rateFilter" id="rate-select" className="select-filter">
+        <select id="rate-select" className="select-filter" defaultValue={this.props.defaultValue} onChange={this.props.handleOrderByChange} >
           {data.map(item =>
-              <option key={item.id} value={item.id}>{item.name}</option>
+              <option key={item.id} value={item.val}>{item.name}</option>
           )}
         </select>
       </>

@@ -5,7 +5,6 @@ class MultiSelectList extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedItems : [],
       showList: false,
       data: this.props.data
     }
@@ -31,34 +30,11 @@ class MultiSelectList extends React.Component {
      }
    }
 
-  onChangeSelection = (e) => {
-    console.log("click ", e.target)
-    e.stopPropagation();
-    //console.log("id ", this.state.selectedItems.includes(e.target.id))
-    if(this.state.selectedItems.includes(parseInt(e.target.id))) {
-      let list = this.state.selectedItems
-      list.splice( list.indexOf(e.target.id), 1 )
-      this.setState({selectedItems : list})
-
-    } else {
-      //console.log("else")
-      this.setState({selectedItems : [...this.state.selectedItems, parseInt(e.target.id)]})
-    }
-  }
-
-  onClickListItem = (e) => {
-    console.log("onClickListItem")
-    e.stopPropagation();
-    this.onChangeSelection(e);
-  }
-
   onClickDropDon = (e) => {
     this.setState({showList: !this.state.showList})
   }
 
   render() {
-    //console.log("selected ", this.state.selectedItems)
-
     return (
       <>
         <div className="multiselect-filter" ref={this.setWrapperRef}>
@@ -66,8 +42,12 @@ class MultiSelectList extends React.Component {
           {this.state.showList &&
             <ul>
               {this.state.data.map(item =>
-                  <li key={item.id} id={item.id} onClick={this.onClickListItem}>
-                    <input type="checkbox" id={item.id} name={item.name} checked={this.state.selectedItems.includes(item.id)} onChange={this.onChangeSelection}/>
+                  <li key={item.id} id={item.id}>
+                    <input type="checkbox"
+                      id={item.id}
+                      name={item.name}
+                      checked={this.props.filteredByPerson.find(obj => obj.id === item.id)}
+                      onChange={this.props.onChangeFilteredByPerson}/>
                     <label htmlFor="scales">{item.name}</label>
                   </li>
               )}
