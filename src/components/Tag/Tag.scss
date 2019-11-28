@@ -1,28 +1,28 @@
 .tag {
+  padding: 3px 10px;
+  margin-left: 10px;
   position: relative;
   border: 1px solid darkcyan;
   border-radius: 3px;
-  padding: 3px 10px;
-  margin-left: 10px;
 
   .close {
     top: 3px;
     width: 15px;
     height: 15px;
-    opacity: 0.5;
     margin: 3px;
+    opacity: 0.5;
     cursor: pointer;
 
     &:hover {
       opacity: 1;
     }
     &:before, &:after {
+      height: 9px;
+      width: 2px;
       position: absolute;
       right: 6px;
       content: ' ';
-      height: 9px;
-      width: 2px;
-      background-color: darkcyan;
+      background-color: #09d3ac;
     }
     &:before {
       transform: rotate(45deg);
@@ -30,6 +30,5 @@
     &:after {
       transform: rotate(-45deg);
     }
-
   }
 }

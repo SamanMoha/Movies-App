@@ -1,5 +1,6 @@
 import React from "react";
 import './MultiSelectList.scss';
+import myArrow from './arrow-down.svg';
 
 class MultiSelectList extends React.Component {
   constructor(props){
@@ -38,7 +39,7 @@ class MultiSelectList extends React.Component {
     return (
       <>
         <div className="multiselect-filter" ref={this.setWrapperRef}>
-          <p onClick={this.onClickDropDon}>Filtrer par acteur(s)</p>
+          <p onClick={this.onClickDropDon}>Filtrer par acteur(s) <img src={myArrow} className='arrow-down'/> </p>
           {this.state.showList &&
             <ul>
               {this.state.data.map(item =>

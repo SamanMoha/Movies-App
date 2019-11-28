@@ -15,24 +15,16 @@ class Person extends React.Component {
       personData: [],
       filteredData: [],
       isLoaded: false,
-      movies: [
-        {
-          id: null,
-          title: null,
-          poster_path: null,
-          release_date: null,
-          vote_average: null
-        }
-      ],
       filteredByPerson: [],
-      orderBy: '&sort_by=vote_average.desc'
+      orderBy: '&sort_by=vote_average.asc',
+      searchData: []
     }
   }
 
   async componentDidMount() {
   let personData = this.state.ids.map(id => {
   return API
-    .get('/person/'+id+'?append_to_response=movie_credits'+this.state.orderBy)
+    .get('/person/'+id+'?append_to_response=movie_credits&language=fr'+this.state.orderBy)
     .then(res => res.data)
     .catch(e => console.error(e));
   })
@@ -46,7 +38,7 @@ class Person extends React.Component {
 
    let personData = ids.map(id => {
    return API
-     .get('/person/'+id+'?append_to_response=movie_credits'+this.state.orderBy)
+     .get('/person/'+id+'?append_to_response=movie_credits&language=fr'+this.state.orderBy)
      .then(res => res.data)
      .catch(e => console.error(e));
    })
@@ -82,44 +74,14 @@ class Person extends React.Component {
    this.setState({orderBy: e.target.value, isLoaded : false}, () => {this.getOrderedData()});
  }
 
- /** Search method */
-handleSearchChange = (e) => {
-  console.log("search ", e)
-    /** Variable to hold the original version of the list */
-    let currentList = this.state.data;
-    /** Variable to hold the filtered list before putting into state */
-    let newList = [];
-    /** If the search bar isn't empty */
-    if (e !== "") {
-        /** Use .filter() to determine which items should be displayed */
-        newList = currentList.filter(item => {
-            const lc = item.text.toLowerCase();
-            const filter = e.toLowerCase();
-            /** check to see if the current list item includes the search term
-             * If it does, it will be added to newList. Using lowercase eliminates
-             * issues with capitalization in search terms and search content
-             * */
-            return lc.includes(filter);
-        });
-    } else {
-        newList = currentList;
-    }
-    this.setState({
-        filtered: newList
-    });
-}
-
   render() {
     return (
       <>
       {this.state.isLoaded ?
         <>
         <div className='filter-container'>
-          <div className='filters'>
-            <MultiSelectList data={this.state.personData} filteredByPerson={this.state.filteredByPerson} onChangeFilteredByPerson={this.onChangeFilteredByPerson}/>
-            <DropdownFilter handleOrderByChange={this.handleOrderByChange} defaultValue={this.state.orderBy}/>
-          </div>
-          <input className='searchBar' type="text" name="searchBar" placeholder='Rechercher...' value="" onChange={this.handleSearchChange}/>
+          <MultiSelectList data={this.state.personData} filteredByPerson={this.state.filteredByPerson} onChangeFilteredByPerson={this.onChangeFilteredByPerson}/>
+          <DropdownFilter handleOrderByChange={this.handleOrderByChange} defaultValue={this.state.orderBy}/>
         </div>
         <div className="tag-container">
           {this.state.filteredByPerson.map(tag =>
@@ -130,9 +92,8 @@ handleSearchChange = (e) => {
         {this.state.filteredData.map(item =>
           item.movie_credits.cast ?
           item.movie_credits.cast.map( i =>
-          <Cards key={i.id} id={i.id} title={i.title} imgSrc={i.backdrop_path}/>
-        ) : null
-
+            <Cards key={i.id} id={i.id} movieData={i} title={i.title} imgSrc={i.backdrop_path}/>
+          ) : null
         )}
         </div>
         </>
