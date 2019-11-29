@@ -22,9 +22,10 @@ class Person extends React.Component {
   }
 
   async componentDidMount() {
+    //'api_key': 'b5cb676487907eeeaf0fdbe36ce765ff',
   let personData = this.state.ids.map(id => {
   return API
-    .get('/person/'+id+'?append_to_response=movie_credits&language=fr'+this.state.orderBy)
+    .get('person/'+id+'?api_key=b5cb676487907eeeaf0fdbe36ce765ff&append_to_response=movie_credits&language=fr'+this.state.orderBy)
     .then(res => res.data)
     .catch(e => console.error(e));
   })
@@ -38,7 +39,7 @@ class Person extends React.Component {
 
    let personData = ids.map(id => {
    return API
-     .get('/person/'+id+'?append_to_response=movie_credits&language=fr'+this.state.orderBy)
+     .get('person/'+id+'?api_key=b5cb676487907eeeaf0fdbe36ce765ff&append_to_response=movie_credits&language=fr'+this.state.orderBy)
      .then(res => res.data)
      .catch(e => console.error(e));
    })
@@ -90,7 +91,7 @@ class Person extends React.Component {
         </div>
         <div className='cards-container'>
         {this.state.filteredData.map(item =>
-          item.movie_credits.cast ?
+          item && item.movie_credits ?
           item.movie_credits.cast.map( i =>
             <Cards key={i.id} id={i.id} movieData={i} title={i.title} imgSrc={i.backdrop_path}/>
           ) : null
